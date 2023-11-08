@@ -1,7 +1,6 @@
 import { FC, ReactNode, useState } from "react";
 import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import { Slot } from "@radix-ui/react-slot";
-import { Tag } from "@phosphor-icons/react";
 
 interface ConfirmProps {
   asChild: boolean;

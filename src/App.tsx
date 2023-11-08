@@ -26,7 +26,6 @@ type TiposSelecionados = {
 function App() {
   const [dados, setDados] = useState(jsonData);
   const [dadosEventos, setDadosEventos] = useState(data);
-  const [tipoFiltro, setTipoFiltro] = useState(""); // Estado para armazenar o tipo de filtro selecionado
   const [mostrarFiltro, setMostrarFiltro] = useState(false);
 
   const [anchorEl, setAnchorEl] = useState<any>()

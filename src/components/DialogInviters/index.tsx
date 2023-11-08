@@ -18,8 +18,6 @@ interface ConfirmProps {
 const DialogInviters: FC<ConfirmProps> = ({ asChild, data, ...props }) => {
   const [open, setOpen] = useState(false);
   const Comp = asChild ? Slot : "button";
-  const [tag, setTag] = useState("");
-
   return (
     <>
       <Comp onClick={() => setOpen(true)} {...props} />
