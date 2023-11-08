@@ -64,7 +64,7 @@ const CardBoard = ({ board, boardIndex, handleDeleteBoard }: CardBoard) => {
               </button>
             </div>
           </Popover>
-          <button className="bg-white rounded-full p-0.5">
+          <button onClick={handleWarn} className="bg-white rounded-full p-0.5">
             <GlobeHemisphereWest weight="fill" />
           </button>
         </div>
