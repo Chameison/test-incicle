@@ -17,6 +17,7 @@ import { toast } from "react-toastify";
 import DialogDeleteKanban from "./components/DialogDeleteKanban";
 import { Popover, Switch } from "@mui/material";
 import React from "react";
+import { FolderDashed } from "@phosphor-icons/react/dist/ssr";
 
 type EventType = "publication" | "event" | "release";
 type TiposSelecionados = {
@@ -28,19 +29,24 @@ function App() {
   const [dadosEventos, setDadosEventos] = useState(data);
   const [mostrarFiltro, setMostrarFiltro] = useState(false);
 
-  const [anchorEl, setAnchorEl] = useState<any>()
-               
-  const [open, setOpen] = useState(Boolean(anchorEl))
+  const [anchorEl, setAnchorEl] = useState<any>();
+
+  const [open, setOpen] = useState(Boolean(anchorEl));
+  const [open2, setOpen2] = useState(Boolean(anchorEl));
 
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
-    setOpen(true)
+    setOpen(true);
+  };
+  const handleOpen2 = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+    setOpen2(true);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
-    setOpen(false)
-
+    setOpen(false);
+    setOpen2(false);
   };
 
   const id = open ? "simple-popover" : undefined;
@@ -80,7 +86,7 @@ function App() {
     const updatedData = dadosEventos.data.filter((item) => item.id !== id);
     setDadosEventos({ ...dadosEventos, data: updatedData });
     toast.success("Item apagado com sucesso!");
-    setOpen(false)
+    setOpen(false);
   };
 
   const handleDeleteBoard = (boardIndex: any, itemIndex: any) => {
@@ -107,7 +113,7 @@ function App() {
                 />
               </button>
               {mostrarFiltro && (
-                <div className="flex flex-col absolute rounded-md bg-gray-300 p-2">
+                <div className="z-10 flex flex-col absolute rounded-md bg-gray-300 p-2">
                   {Object.keys(tiposSelecionados).map((tipo) => (
                     <label key={tipo} className="flex ">
                       <Switch
@@ -121,10 +127,10 @@ function App() {
                     </label>
                   ))}
                   <button
-                    className="bg-slate-100 font-semibold px-1 rounded-sm text-center"
+                    className="bg-red-400 text-white font-semibold px-1 rounded-sm text-center"
                     onClick={() => setMostrarFiltro(false)}
                   >
-                    Filtrar
+                    Fechar
                   </button>
                 </div>
               )}
@@ -134,6 +140,16 @@ function App() {
             </div>
           </div>
           <div className="grid grid-cols-1 gap-3">
+            {filtrarPorTipo().length === 0 && (
+              <div
+                className="flex justify-center gap-2  bg-[#ffffff] shadow-lg h-auto  md:max-h-56 p-2"
+              >
+                <div className="text-lg text-red-400 flex justify-center gap-2 my-10">
+                  Sem dados <FolderDashed size={32} weight="fill" />
+                </div>
+              </div>
+            )}
+
             {filtrarPorTipo().map((item) => (
               <>
                 {/* <CardEvento
@@ -141,154 +157,190 @@ function App() {
                   handleDeleteItem={() => handleDeleteItem(item.id)}
                 /> */}
                 <div
-                key={item?.id}
-                className="flex items-center gap-2  bg-[#ffffff] shadow-lg h-auto  md:max-h-56 p-2"
-              >
-                <div>
-                  <img
-                    className="relative max-w-[75px] h-auto"
-                    src={item.file.url}
-                    alt=""
-                  />
-                </div>
-                <div className="flex justify-between px-2 w-full h-auto md:h-[75px]">
-                  <div className="flex flex-col ">
-                    <h2 className="text-[12px] md:text-[16px] text-[#707070] font-bold mb-[1px]">
-                      {item.title}
-                    </h2>
-                    <div className="flex items-center gap-2 mb-1 text-[6px] md:text-[8px] font-light uppercase ">
-                      <a
-                        href=""
-                        className={` text-white ${getBgClass(
-                          item.type
-                        )} rounded-sm px-1`}
-                      >
-                        {item.type}
-                      </a>
-                      <span>{item.info.place}</span>
-                      <span>|</span>
-                      <span>{item.info.date}</span>
-                      <span>|</span>
-                      <DialogInviters asChild data={item.invited_people}>
-                        <button className="text-blue-600 underline">
-                          {item.invited_people && item.invited_people.length > 0
-                            ? `${item.invited_people.length} ${
-                                item.invited_people.length === 1
-                                  ? "Confirmação"
-                                  : "Confirmações"
-                              } de 15`
-                            : "0 Confirmações"}
-                        </button>
-                      </DialogInviters>
-                    </div>
-                    <p className="text-[10px] md:text-[12px] font-thin ">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Fugiat, maxime recusandae ducimus eius nihil eum sint
-                    </p>
-                  </div>
-
-                  <button className="text-[#DBDBDB]" onClick={handleOpen}>
-                    <DotsThreeCircle
-                      size={32}
-                      weight="fill"
-                      className="text-[#707070]"
+                  key={item?.id}
+                  className="flex items-center gap-2  bg-[#ffffff] shadow-lg h-auto  md:max-h-56 p-2"
+                >
+                  <div>
+                    <img
+                      className="relative max-w-[75px] h-auto"
+                      src={item.file.url}
+                      alt=""
                     />
-                  </button>
-                  <Popover
-                    id={id}
-                    open={open}
-                    anchorEl={anchorEl}
-                    onClose={handleClose}
-                  >
-                    <div className="px-2 py-2 flex gap-2">
-                      <DialogDelete
-                        asChild
-                        handleDelete={() => handleDeleteItem(item.id)}
-                      >
+                  </div>
+                  <div className="flex justify-between px-2 w-full h-auto md:h-[75px]">
+                    <div className="flex flex-col ">
+                      <h2 className="text-[12px] md:text-[16px] text-[#707070] font-bold mb-[1px]">
+                        {item.title}
+                      </h2>
+                      <div className="flex items-center gap-2 mb-1 text-[6px] md:text-[8px] font-light uppercase ">
+                        <a
+                          href=""
+                          className={` text-white ${getBgClass(
+                            item.type
+                          )} rounded-sm px-1`}
+                        >
+                          {item.type}
+                        </a>
+                        <span>{item.info.place}</span>
+                        <span>|</span>
+                        <span>{item.info.date}</span>
+                        <span>|</span>
+                        <DialogInviters asChild data={item.invited_people}>
+                          <button className="text-blue-600 underline">
+                            {item.invited_people &&
+                            item.invited_people.length > 0
+                              ? `${item.invited_people.length} ${
+                                  item.invited_people.length === 1
+                                    ? "Confirmação"
+                                    : "Confirmações"
+                                } de 15`
+                              : "0 Confirmações"}
+                          </button>
+                        </DialogInviters>
+                      </div>
+                      <p className="text-[10px] md:text-[12px] font-thin ">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Fugiat, maxime recusandae ducimus eius nihil eum sint
+                      </p>
+                    </div>
+
+                    <button className="text-[#DBDBDB]" onClick={handleOpen}>
+                      <DotsThreeCircle
+                        size={32}
+                        weight="fill"
+                        className="text-[#707070]"
+                      />
+                    </button>
+                    <Popover
+                      id={id}
+                      open={open}
+                      anchorEl={anchorEl}
+                      onClose={handleClose}
+                    >
+                      <div className="px-2 py-2 flex gap-2">
+                        <DialogDelete
+                          asChild
+                          handleDelete={() => handleDeleteItem(item.id)}
+                        >
+                          <button>
+                            <Trash
+                              className="text-red-400"
+                              size={25}
+                              weight="fill"
+                            />
+                          </button>
+                        </DialogDelete>
                         <button>
-                          <Trash
-                            className="text-red-400"
+                          <ShareNetwork
+                            className="text-blue-400"
                             size={25}
                             weight="fill"
                           />
                         </button>
-                      </DialogDelete>
-                      <button>
-                        <ShareNetwork
-                          className="text-blue-400"
-                          size={25}
-                          weight="fill"
-                        />
-                      </button>
-                    </div>
-                  </Popover>
+                      </div>
+                    </Popover>
+                  </div>
                 </div>
-              </div>
               </>
             ))}
           </div>
         </div>
         <div className="w-full md:w-3/12 flex flex-col sm:flex-row md:flex-col gap-4">
-          <div className="bg-[#FFF2DE]  border-[#DCD1C0] border-2 px-4 pt-5 pb-2">
+          <div className="bg-[#FFF2DE]  sm:w-1/2 md:w-full border-[#DCD1C0] border-2 px-4 pt-5 pb-2">
             <h2 className="text-lg font-bold mb-1">Endormarketing</h2>
-            <p className="mb-2 text-[13px]">
+            <p className="mb-2 text-[13px] font-light">
               Endomarketing está relacionado às ações de treinamento ou
               qualificação dos colaboradores da empresa visando um melhor
               serviço para o cliente. Marketing interno, devido ao nome, é
               usualmente confundido com Endomarketing mesmo sendo conceitos
               diferentes.
             </p>
-            <button className="border-[#DCD1C0] text-md mt-5 border-2 px-4 py-2 mb-4 rounded-md">
+            <button className="border-[#707070] uppercase text-[#707070] font-bold text-md mt-5 border-2 px-7 py-2 mb-4 rounded-md">
               Dispensar
             </button>
           </div>
-          <div className="bg-[#ffffff]  rounded-md border-[#ffffff]  shadow-md border-2 px-2 ">
+          <div className="bg-[#ffffff]  sm:w-1/2 md:w-full rounded-md border-[#ffffff] 2xl:min-h-[350px] shadow-md border-2 px-2 pb-2 ">
             <h2 className="text-sm my-1 font-bold  text-gray-600">
               Quadros de Gestão à Vista
             </h2>
             <div className="">
-              {!dados.data.length && <div>Sem dados</div>}
               {dados.data.map((item, i) => (
-                <div key={i} className="grid grid-cols-1 gap-2">
+                <div key={i} className="grid grid-cols-1 gap-3 2xl:gap-2">
+                  {item.boards.length === 0 && (
+                    <div className="text-lg text-red-400 flex justify-center gap-2 my-10">
+                      Sem dados <FolderDashed size={32} weight="fill" />
+                    </div>
+                  )}
                   {item.boards.map((board, boardIndex) => (
-                    <div key={boardIndex} className="bg-[#E9F1F5] px-1 pb-2">
-                      <div className="flex items-center mb-1 justify-between">
-                        <h2 className="text-[10px] lg:text-[12px]">
-                          {board.title}
-                        </h2>
-                        <div className="flex items-center gap-0.5">
-                          <DialogDeleteKanban
-                            asChild
-                            handleDelete={() =>
-                              handleDeleteBoard(boardIndex, i)
-                            }
-                          >
-                            <button className="bg-white rounded-full p-0.5">
+                    <>
+                      <div key={boardIndex} className="bg-[#E9F1F5] px-2 pb-2">
+                        <div className="flex items-center  justify-between">
+                          <h2 className="text-[12px] sm:text-[10px] lg:text-[12px]">
+                            {board.title}
+                          </h2>
+                          <div className="flex items-center gap-0.5">
+                            <button
+                              className="bg-white rounded-full p-0.5"
+                              onClick={handleOpen2}
+                            >
                               <DotsThreeCircle
                                 weight="fill"
                                 className="text-[#707070]"
                               />
                             </button>
-                          </DialogDeleteKanban>
 
-                          <button className="bg-white rounded-full p-0.5">
-                            <GlobeHemisphereWest weight="fill" />
-                          </button>
+                            <Popover
+                              id={id}
+                              open={open2}
+                              anchorEl={anchorEl}
+                              onClose={handleClose}
+                            >
+                              <div className="px-2 py-2 flex gap-2">
+                                <DialogDeleteKanban
+                                  asChild
+                                  handleDelete={() =>
+                                    handleDeleteBoard(boardIndex, i)
+                                  }
+                                >
+                                  <button>
+                                    <Trash
+                                      className="text-red-400"
+                                      size={25}
+                                      weight="fill"
+                                    />
+                                  </button>
+                                </DialogDeleteKanban>
+                                <button>
+                                  <ShareNetwork
+                                    className="text-blue-400"
+                                    size={25}
+                                    weight="fill"
+                                  />
+                                </button>
+                              </div>
+                            </Popover>
+                            <button className="bg-white rounded-full p-0.5">
+                              <GlobeHemisphereWest weight="fill" />
+                            </button>
+                          </div>
+                        </div>
+
+                        <div className="flex justify-between gap-1">
+                          {board.resume_files.map((file, fileIndex) => (
+                            <div
+                              key={fileIndex}
+                              className="max-w-[100px] 2xl:max-w-[70px]"
+                            >
+                              <img
+                                className="  w-auto  h-auto"
+                                src={file.file}
+                                alt={`File ${fileIndex}`}
+                              />
+                            </div>
+                          ))}
                         </div>
                       </div>
-
-                      <div className="flex justify-between gap-1">
-                        {board.resume_files.map((file, fileIndex) => (
-                          <div key={fileIndex}>
-                            <img
-                              className="  w-auto h-auto"
-                              src={file.file}
-                              alt={`File ${fileIndex}`}
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    </>
                   ))}
                 </div>
               ))}

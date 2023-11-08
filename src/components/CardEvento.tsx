@@ -40,7 +40,6 @@ const CardEvento = ({ item, handleDeleteItem, open }: CardEventoProps) => {
         return "";
     }
   };
-  console.log(isOpen)
   return (
     <div
       key={item?.id}
