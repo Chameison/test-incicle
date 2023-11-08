@@ -38,7 +38,7 @@ const DialogInviters: FC<ConfirmProps> = ({ asChild, data, ...props }) => {
         </DialogTitle>
 
         <DialogContent className="w-full">
-          <div className="flex h-full w-full  justify-center gap-3">
+          <div className="flex flex-col sm:flex-row h-full w-full  justify-center gap-3">
             {data?.map((item, i) => (
               <div key={i} className="w-full border-2  bg-gray-300 flex flex-col justify-between items-center p-2 rounded-sm">
                 <div>
