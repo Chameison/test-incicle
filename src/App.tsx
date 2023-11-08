@@ -99,7 +99,7 @@ function App() {
   return (
     <main className="w-full">
       <Navbar />
-      <section className="px-8 lg:px-16 gap-5 w-full flex flex-col  md:flex-row justify-between mt-7 min-h-[760px] ">
+      <section className="px-8 lg:px-16 mb-10 gap-5 w-full flex flex-col  md:flex-row justify-between mt-7 min-h-[760px] ">
         <div className="w-12/12 md:w-9/12 ">
           <div className="w-full flex flex-col sm:flex-row justify-between mb-2">
             <h2 className="text-2xl md:text-4xl  font-light">Endormarketing</h2>
@@ -265,7 +265,7 @@ function App() {
             </h2>
             <div className="">
               {dados.data.map((item, i) => (
-                <div key={i} className="grid grid-cols-1 gap-3 2xl:gap-2">
+                <div key={i} className="grid grid-cols-1 gap-2 2xl:gap-2">
                   {item.boards.length === 0 && (
                     <div className="text-lg text-red-400 flex justify-center gap-2 my-10">
                       Sem dados <FolderDashed size={32} weight="fill" />
