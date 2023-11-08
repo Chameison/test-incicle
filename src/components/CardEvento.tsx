@@ -1,32 +1,35 @@
 import { DotsThreeCircle, ShareNetwork, Trash } from "@phosphor-icons/react";
 import DialogInviters from "./DialogInviters";
 import { Popover } from "@mui/material";
-import DialogDelete from "./DiloagDelete";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 interface CardEventoProps {
   item: any;
-  handleDeleteItem: () => void; // Adicione a prop handleDelete
-  open: boolean
+  handleDeleteItem: () => void; 
 }
-const CardEvento = ({ item, handleDeleteItem, open }: CardEventoProps) => {
+const CardEvento = ({ item, handleDeleteItem }: CardEventoProps) => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
   );
-  const [isOpen, setIsOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
-    setIsOpen(true)
+    setOpen(true);
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
-    setIsOpen(false)
 
+    setAnchorEl(null);
+
+    setOpen(false);
   };
 
-  const id = open ? "simple-popover" : undefined;
+  const handleCloseAndDelete = () => {
+    handleClose(); 
+    handleDeleteItem(); 
+  };
 
   const getBgClass = (type: string) => {
     switch (type) {
@@ -39,6 +42,9 @@ const CardEvento = ({ item, handleDeleteItem, open }: CardEventoProps) => {
       default:
         return "";
     }
+  };
+  const handleWarn = () => {
+    toast.warn('AINDA INDISPONÍVEL')
   };
   return (
     <div
@@ -89,17 +95,13 @@ const CardEvento = ({ item, handleDeleteItem, open }: CardEventoProps) => {
         <button className="text-[#DBDBDB]" onClick={handleClick}>
           <DotsThreeCircle size={32} weight="fill" className="text-[#707070]" />
         </button>
-        <Popover id={id} open={open || isOpen} anchorEl={anchorEl} onClose={handleClose}>
+        <Popover  open={open} anchorEl={anchorEl} onClose={handleClose}>
           <div className="px-2 py-2 flex gap-2">
-            <DialogDelete
-              asChild
-              handleDelete={() => handleDeleteItem()}
-            >
-              <button>
-                <Trash className="text-red-400" size={25} weight="fill" />
-              </button>
-            </DialogDelete>
-            <button>
+            <button onClick={handleCloseAndDelete}>
+              <Trash className="text-red-400" size={25} weight="fill" />
+            </button>
+
+            <button onClick={handleWarn}>
               <ShareNetwork className="text-blue-400" size={25} weight="fill" />
             </button>
           </div>

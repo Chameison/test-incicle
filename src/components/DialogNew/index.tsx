@@ -1,25 +1,20 @@
 import { FC, ReactNode, useState } from "react";
 import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import { Slot } from "@radix-ui/react-slot";
+import { FolderDashed } from "@phosphor-icons/react";
 
 interface ConfirmProps {
   asChild: boolean;
   children: ReactNode;
-  handleDelete: () => void; // Adicione a prop handleDelete
 }
 
-const DialogDelete: FC<ConfirmProps> = ({
+const DialogNew: FC<ConfirmProps> = ({
   asChild,
-  handleDelete,
   ...props
 }) => {
   const [open, setOpen] = useState(false);
   const Comp = asChild ? Slot : "button";
 
-  const handleDeleteClick = () => {
-    handleDelete(); // Chama a função handleDelete passada como prop
-    setOpen(false); // Fecha o diálogo após a exclusão
-  };
 
   return (
     <>
@@ -27,7 +22,7 @@ const DialogDelete: FC<ConfirmProps> = ({
 
       <Dialog open={open} onClose={() => setOpen(false)} maxWidth="sm">
         <DialogTitle className="flex items-center justify-between gap-4">
-          <h2 className="text-center text-2xl font-medium">Deseja excluir?</h2>
+          <h2 className="text-center text-2xl font-medium">Crie um novo: </h2>
           <button
             type="button"
             onClick={() => setOpen(false)}
@@ -38,20 +33,12 @@ const DialogDelete: FC<ConfirmProps> = ({
         </DialogTitle>
 
         <DialogContent className="w-full">
-          <div className="flex h-full w-full flex-col items-center justify-center gap-3">
-            <p>O evento será deletado!</p>
-
-            <button
-              onClick={handleDeleteClick} // Chame a função handleDeleteClick ao clicar em "Excluir"
-              className="flex w-2/4 items-center bg-red-400 justify-center text-white"
-            >
-              Excluir
-            </button>
-          </div>
+          
+          <div className="flex justify-center gap-3 text-xl text-red-400">Em breve <FolderDashed size={32} weight="fill" /> </div>
         </DialogContent>
       </Dialog>
     </>
   );
 };
 
-export default DialogDelete;
+export default DialogNew;
