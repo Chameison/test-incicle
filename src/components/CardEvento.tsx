@@ -51,9 +51,9 @@ const CardEvento = ({ item, handleDeleteItem }: CardEventoProps) => {
       key={item?.id}
       className="flex items-center gap-2  bg-[#ffffff] shadow-lg h-auto  md:max-h-56 p-2"
     >
-      <div>
+      <div className="max-w-[100px]">
         <img
-          className="relative max-w-[75px] h-auto"
+          className="relative md:max-w-[75px] h-auto"
           src={item.file.url}
           alt=""
         />

@@ -68,7 +68,7 @@ function App() {
                 <CaretDown size={20} weight="fill" />
               </button>
               {mostrarFiltro && (
-                <div className="z-10 flex flex-col absolute rounded-md bg-gray-300 p-2">
+                <div className="z-10 flex flex-col absolute rounded-md bg-white shadow-2xl p-2">
                   {Object.keys(tiposSelecionados).map((tipo) => (
                     <label key={tipo} className="flex ">
                       <Switch
@@ -106,12 +106,12 @@ function App() {
             )}
 
             {filtrarPorTipo().map((item) => (
-              <div key={item.id}>
+ 
                 <CardEvento
                   item={item}
                   handleDeleteItem={() => handleDeleteItem(item.id)}
                 />
-              </div>
+    
             ))}
           </div>
         </div>
