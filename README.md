@@ -18,5 +18,5 @@ Esse teste consiste em conhecermos um pouco o seu conhecimento na área de desen
 2. Ao clicar no botão "more" de cada item, deve aparecer a opção de "Excluir item", ao clicar no botão, o item deve sumir. A mesma funcionalidade deve ocorrer nos quadros de gestão à vista;
 3. Ao clicar no botão Filtro, deve aparecer uma lista com os tipos de publicações: evento, publicação e comunicado. Em cada item, um checkbox onde o usuário pode selecionar quais deseja filtrar. A renderização dos itens deve ocorrer conforme selecionado pelo usuário.
 
-Link do projeto online: <a href=' https://testincicle.vercel.app/'>Projeto</a>
+Link do projeto online: https://testincicle.vercel.app/
 <sub>Os dados do teste são totalmente fictícios.</sub>
