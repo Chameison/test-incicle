@@ -1,6 +1,7 @@
 import { Popover } from "@mui/material";
 import {
   DotsThreeCircle,
+  DotsThreeOutline,
   GlobeHemisphereWest,
   ShareNetwork,
   Trash,
@@ -12,7 +13,6 @@ interface CardBoard {
   board: any;
   boardIndex: number;
   handleDeleteBoard: () => void; // Adicione a prop handleDelete
-
 }
 const CardBoard = ({ board, boardIndex, handleDeleteBoard }: CardBoard) => {
   const [anchorEl, setAnchorEl] = useState<any>();
@@ -33,24 +33,23 @@ const CardBoard = ({ board, boardIndex, handleDeleteBoard }: CardBoard) => {
     handleDeleteBoard(); // Executa a exclusão do item
   };
   const handleWarn = () => {
-    toast.warn('AINDA INDISPONÍVEL')
+    toast.warn("AINDA INDISPONÍVEL");
   };
   return (
     <div key={boardIndex} className="bg-[#E9F1F5] px-2 pb-2">
-      <div className="flex items-center  justify-between">
+      <div className="flex items-center py-[3px]  justify-between">
         <h2 className="text-[12px] sm:text-[10px] lg:text-[12px]">
           {board.title}
         </h2>
         <div className="flex items-center gap-0.5">
+          <button onClick={handleWarn} className="bg-white rounded-full p-0.5">
+            <GlobeHemisphereWest weight="fill" className="text-[#999999]" />
+          </button>
           <button className="bg-white rounded-full p-0.5" onClick={handleOpen}>
-            <DotsThreeCircle weight="fill" className="text-[#707070]" />
+            <DotsThreeOutline weight="fill" className="text-[#707070]" />
           </button>
 
-          <Popover
-            open={open}
-            anchorEl={anchorEl}
-            onClose={handleClose}
-          >
+          <Popover open={open} anchorEl={anchorEl} onClose={handleClose}>
             <div className="px-2 py-2 flex gap-2">
               <button onClick={handleCloseAndDelete}>
                 <Trash className="text-red-400" size={25} weight="fill" />
@@ -64,9 +63,6 @@ const CardBoard = ({ board, boardIndex, handleDeleteBoard }: CardBoard) => {
               </button>
             </div>
           </Popover>
-          <button onClick={handleWarn} className="bg-white rounded-full p-0.5">
-            <GlobeHemisphereWest weight="fill" />
-          </button>
         </div>
       </div>
 

@@ -2,6 +2,7 @@ import { FC, ReactNode, useState } from "react";
 import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import { Slot } from "@radix-ui/react-slot";
 import photono from "../../assets/no-photo.png";
+import { FolderDashed } from "@phosphor-icons/react";
 interface dados {
   avatar: string;
   confirmed_presence: boolean;
@@ -39,8 +40,16 @@ const DialogInviters: FC<ConfirmProps> = ({ asChild, data, ...props }) => {
 
         <DialogContent className="w-full">
           <div className="flex flex-col sm:flex-row h-full w-full  justify-center gap-3">
+            {(data === undefined || data.length === 0) && (
+              <div className="text-lg text-red-400 flex justify-center gap-2 my-10">
+                Sem dados <FolderDashed size={32} weight="fill" />
+              </div>
+            )}
             {data?.map((item, i) => (
-              <div key={i} className="w-full border-2 py-3 bg-slate-200 flex flex-col justify-between items-center p-3 rounded-sm">
+              <div
+                key={i}
+                className="w-full border-2 py-3 bg-slate-200 flex flex-col justify-between items-center p-3 rounded-sm"
+              >
                 <div>
                   <img
                     src={item.avatar ? item.avatar : photono}
@@ -49,9 +58,20 @@ const DialogInviters: FC<ConfirmProps> = ({ asChild, data, ...props }) => {
                   />
                 </div>
                 <div className="min-w-[150px] flex flex-col mt-2 gap-2 text-sm w-full">
-                  <span className="w-full flex flex-col items-center bg-gray-100 shadow-md p-2 rounded-md font-light "> <span className="font-semibold ">Nome</span> {item.name}</span>
-                  <span className="flex flex-col items-center bg-gray-100 shadow-md p-2 rounded-md"> <span className="font-semibold">Usuário:</span> {item.username}</span>
-                  <a className={`text-center font-semibold text-white p-2 shadow-md rounded-md ${item.confirmed_presence ? 'bg-emerald-500': 'bg-rose-400'}`}>
+                  <span className="w-full flex flex-col items-center bg-gray-100 shadow-md p-2 rounded-md font-light ">
+                    {" "}
+                    <span className="font-semibold ">Nome</span> {item.name}
+                  </span>
+                  <span className="flex flex-col items-center bg-gray-100 shadow-md p-2 rounded-md">
+                    {" "}
+                    <span className="font-semibold">Usuário:</span>{" "}
+                    {item.username}
+                  </span>
+                  <a
+                    className={`text-center font-semibold text-white p-2 shadow-md rounded-md ${
+                      item.confirmed_presence ? "bg-emerald-500" : "bg-rose-400"
+                    }`}
+                  >
                     {item.confirmed_presence ? "Confirmado" : "Pendente"}
                   </a>
                 </div>

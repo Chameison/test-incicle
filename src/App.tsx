@@ -55,13 +55,13 @@ function App() {
   return (
     <main className="w-full">
       <Navbar />
-      <section className="px-8 mb-10 gap-5 flex flex-col lg:px-16  md:flex-row mt-7 ">
+      <section className="text-[#707070] px-8 mb-10 gap-5 flex flex-col lg:px-16  md:flex-row mt-7 ">
         <div className="w-12/12 md:w-9/12 ">
           <div className="w-full flex flex-col sm:flex-row justify-between mb-2">
-            <h2 className="text-2xl md:text-4xl font-light">Endormarketing</h2>
+            <h2 className="text-2xl md:text-4xl font-light">Endomarketing</h2>
             <div className="flex gap-3 h-10 my-1">
               <button
-                className="flex p-4 bg-[#ffffff] justify-center gap-2 items-center rounded-lg w-[115px] h-[38px] border-stone-500 border-[1px]"
+                className="flex p-2 text-[14px] bg-[#ffffff] justify-between  items-center rounded-[4px] w-[95px] h-[38px] border-[#b4b4b4] border-[1px]"
                 onClick={() => setMostrarFiltro(!mostrarFiltro)}
               >
                 TIPO
@@ -90,8 +90,9 @@ function App() {
                 </div>
               )}
               <DialogNew asChild>
-                <button className="flex p-4 text-white bg-[#3489B1] justify-center gap-2 items-center rounded-lg w-[115px] h-[38px] border-[#3489B1] border-[1px]">
-                  CRIAR <Plus size={20} weight="bold" />
+                <button className="text-white flex p-2 text-[14px] bg-[#3489B1] justify-between  items-center rounded-[4px] w-[95px] h-[38px] border-[#3489B1] border-[1px]">
+                  
+                  CRIAR <Plus size={15} weight="bold" />
                 </button>
               </DialogNew>
             </div>
@@ -115,9 +116,9 @@ function App() {
           </div>
         </div>
         <div className="w-full md:w-3/12 flex flex-col sm:flex-row md:flex-col gap-4">
-          <div className="bg-[#FFF2DE]  sm:w-1/2 md:w-full border-[#DCD1C0] border-2 px-4 pt-5 pb-2">
+          <div className="bg-[#FFF2DE] text-[#707070]  sm:w-1/2 md:w-full border-[#DCD1C0] border-2 px-4 pt-5 pb-2">
             <h2 className="text-lg font-bold mb-1">Endormarketing</h2>
-            <p className="mb-2 text-[13px] font-light">
+            <p className="mb-2 text-[14px] font-light ">
               Endomarketing está relacionado às ações de treinamento ou
               qualificação dos colaboradores da empresa visando um melhor
               serviço para o cliente. Marketing interno, devido ao nome, é

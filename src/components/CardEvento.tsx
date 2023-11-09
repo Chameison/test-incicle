@@ -1,4 +1,4 @@
-import { DotsThreeCircle, ShareNetwork, Trash } from "@phosphor-icons/react";
+import { DotsThreeCircle, DotsThreeOutline, ShareNetwork, Trash } from "@phosphor-icons/react";
 import DialogInviters from "./DialogInviters";
 import { Popover } from "@mui/material";
 import React, { useState } from "react";
@@ -58,15 +58,15 @@ const CardEvento = ({ item, handleDeleteItem }: CardEventoProps) => {
           alt=""
         />
       </div>
-      <div className="flex justify-between px-2 w-full h-auto ">
+      <div className="flex justify-between items-center px-2 w-full h-auto ">
         <div className="flex flex-col ">
-          <h2 className="text-[14px] md:text-[16px] text-[#707070] font-bold mb-[1px]">
+          <h2 className="text-[18px] text-[#707070] font-bold mb-[1px]">
             {item.title}
           </h2>
-          <div className="flex items-center gap-2 mb-1 text-[8px] md:text-[10px] font-light uppercase ">
+          <div className="flex items-center gap-2 mb-1 text-[10px] font-light uppercase ">
             <a
               
-              className={` text-white ${getBgClass(item.type)}  px-1`}
+              className={`text-[8px] text-white ${getBgClass(item.type)}  px-1`}
             >
               {item.type}
             </a>
@@ -86,14 +86,14 @@ const CardEvento = ({ item, handleDeleteItem }: CardEventoProps) => {
               </button>
             </DialogInviters>
           </div>
-          <p className="text-[12px] md:text-[12px] font-thin ">
+          <p className="text-[14px] font-thin ">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat,
             maxime recusandae ducimus eius nihil eum sint
           </p>
         </div>
 
-        <button className="text-[#DBDBDB]" onClick={handleClick}>
-          <DotsThreeCircle size={32} weight="fill" className="text-[#707070]" />
+        <button className="flex justify-center items-center w-7 h-7 p-1 rounded-full bg-[#dbdbdb]" onClick={handleClick}>
+          <DotsThreeOutline size={22} weight="fill" className="text-[#707070]" />
         </button>
         <Popover  open={open} anchorEl={anchorEl} onClose={handleClose}>
           <div className="px-2 py-2 flex gap-2">
