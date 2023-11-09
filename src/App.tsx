@@ -106,12 +106,11 @@ function App() {
             )}
 
             {filtrarPorTipo().map((item) => (
- 
-                <CardEvento
-                  item={item}
-                  handleDeleteItem={() => handleDeleteItem(item.id)}
-                />
-    
+              <CardEvento
+                key={item.id}
+                item={item}
+                handleDeleteItem={() => handleDeleteItem(item.id)}
+              />
             ))}
           </div>
         </div>
@@ -151,7 +150,6 @@ function App() {
                         }
                       />
                     </div>
-
                   ))}
                 </div>
               ))}
