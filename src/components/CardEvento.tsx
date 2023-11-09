@@ -70,7 +70,7 @@ const CardEvento = ({ item, handleDeleteItem }: CardEventoProps) => {
             >
               {item.type}
             </a>
-            <span className={`${!item.info.place ? 'bg-red-100':''}`}>{item.info.place ? item.info.place: 'Indefinido'}</span>
+            <span className={`${!item.info.place ? 'bg-red-100 px-1':''}`}>{item.info.place ? item.info.place: 'Indefinido'}</span>
             <span>|</span>
             <span>{item.info.date}</span>
             <span>|</span>
