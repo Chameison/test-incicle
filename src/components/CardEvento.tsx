@@ -1,4 +1,4 @@
-import { DotsThreeCircle, DotsThreeOutline, ShareNetwork, Trash } from "@phosphor-icons/react";
+import { DotsThreeOutline, ShareNetwork, Trash } from "@phosphor-icons/react";
 import DialogInviters from "./DialogInviters";
 import { Popover } from "@mui/material";
 import React, { useState } from "react";

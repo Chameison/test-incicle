@@ -1,6 +1,5 @@
 import { Popover } from "@mui/material";
 import {
-  DotsThreeCircle,
   DotsThreeOutline,
   GlobeHemisphereWest,
   ShareNetwork,
