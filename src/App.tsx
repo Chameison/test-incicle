@@ -10,6 +10,7 @@ import { FolderDashed } from "@phosphor-icons/react/dist/ssr";
 import CardEvento from "./components/CardEvento";
 import CardBoard from "./components/CardBoard";
 import DialogNew from "./components/DialogNew";
+import { DataBoard, DataEvent } from "./types/types";
 
 type EventType = "publication" | "event" | "release";
 type TiposSelecionados = {
@@ -17,8 +18,8 @@ type TiposSelecionados = {
 };
 
 function App() {
-  const [dados, setDados] = useState(jsonData);
-  const [dadosEventos, setDadosEventos] = useState(data);
+  const [dadosQuadros, setDadosQuadros] = useState<DataBoard>(jsonData);
+  const [dadosEventos, setDadosEventos] = useState<DataEvent>(data);
   const [mostrarFiltro, setMostrarFiltro] = useState(false);
 
   const [tiposSelecionados, setTiposSelecionados] = useState<TiposSelecionados>(
@@ -31,7 +32,7 @@ function App() {
   const toggleTipoSelecionado = (tipo: EventType) => {
     setTiposSelecionados((prev) => ({
       ...prev,
-      [tipo]: !prev[tipo as keyof typeof prev],
+      [tipo]: !prev[tipo],
     }));
   };
 
@@ -41,10 +42,10 @@ function App() {
     toast.success("Item apagado com sucesso!");
   };
 
-  const handleDeleteBoard = (boardIndex: any, itemIndex: any) => {
-    const updatedData = [...dados.data];
+  const handleDeleteBoard = (boardIndex: number, itemIndex: number) => {
+    const updatedData = [...dadosQuadros.data];
     updatedData[itemIndex].boards.splice(boardIndex, 1);
-    setDados({ ...dados, data: updatedData });
+    setDadosQuadros({ ...dadosQuadros, data: updatedData });
     toast.success("Quadro apagado com sucesso!");
   };
   const filtrarPorTipo = () => {
@@ -52,6 +53,7 @@ function App() {
       (item) => tiposSelecionados[item.type as EventType]
     );
   };
+  console.log()
   return (
     <main className="w-full">
       <Navbar />
@@ -133,8 +135,8 @@ function App() {
             <h2 className="text-sm my-1 font-bold  text-gray-600">
               Quadros de Gestão à Vista
             </h2>
-            <div className="">
-              {dados.data.map((item, i) => (
+            <div >
+              {dadosQuadros.data.map((item, i) => (
                 <div key={i} className="grid grid-cols-1 gap-2 2xl:gap-2">
                   {item.boards.length === 0 && (
                     <div className="text-lg text-red-400 flex justify-center gap-2 my-10">

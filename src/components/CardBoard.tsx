@@ -1,3 +1,4 @@
+import React, { useState }  from "react";
 import { Popover } from "@mui/material";
 import {
   DotsThreeOutline,
@@ -5,17 +6,18 @@ import {
   ShareNetwork,
   Trash,
 } from "@phosphor-icons/react";
-import { useState } from "react";
 import { toast } from "react-toastify";
+import { Board, ResumeFile } from "../types/types";
 
-interface CardBoard {
-  board: any;
+interface CardBoardProps {
+  board: Board;
   boardIndex: number;
   handleDeleteBoard: () => void; // Adicione a prop handleDelete
 }
-const CardBoard = ({ board, boardIndex, handleDeleteBoard }: CardBoard) => {
-  const [anchorEl, setAnchorEl] = useState<any>();
-
+const CardBoard = ({ board, boardIndex, handleDeleteBoard }: CardBoardProps) => {
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+    null
+  );
   const [open, setOpen] = useState(Boolean(anchorEl));
 
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -66,8 +68,8 @@ const CardBoard = ({ board, boardIndex, handleDeleteBoard }: CardBoard) => {
       </div>
 
       <div className="flex justify-between gap-1">
-        {board.resume_files.map((file: any, fileIndex: number) => (
-          <div key={fileIndex} className="max-w-[100px] 2xl:max-w-[70px]">
+        {board.resume_files.map((file: ResumeFile, fileIndex: number) => (
+          <div key={fileIndex} className="max-w-[100px] 2xl:max-w-[70px] ">
             <img
               className="  w-auto  h-auto"
               src={file.file}

@@ -3,17 +3,12 @@ import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import { Slot } from "@radix-ui/react-slot";
 import photono from "../../assets/no-photo.png";
 import { FolderDashed } from "@phosphor-icons/react";
-interface dados {
-  avatar: string;
-  confirmed_presence: boolean;
-  id: number;
-  name: string;
-  username: string;
-}
+import { InvitedPerson } from "../../types/types";
+
 interface ConfirmProps {
   asChild: boolean;
   children: ReactNode;
-  data?: dados[];
+  data?: InvitedPerson[];
 }
 
 const DialogInviters: FC<ConfirmProps> = ({ asChild, data, ...props }) => {
