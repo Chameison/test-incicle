@@ -18,18 +18,5 @@ Esse teste consiste em conhecermos um pouco o seu conhecimento na área de desen
 2. Ao clicar no botão "more" de cada item, deve aparecer a opção de "Excluir item", ao clicar no botão, o item deve sumir. A mesma funcionalidade deve ocorrer nos quadros de gestão à vista;
 3. Ao clicar no botão Filtro, deve aparecer uma lista com os tipos de publicações: evento, publicação e comunicado. Em cada item, um checkbox onde o usuário pode selecionar quais deseja filtrar. A renderização dos itens deve ocorrer conforme selecionado pelo usuário.
 
-## INSTRUÇÕES SOBRE O GIT
-1. Crie um repositório para o seu projeto;
-2. Deixe na main (ou master) apenas os arquivos iniciais da instalação React;
-3. Construa o projeto em uma branch separada e ao concluir, faça e aprove uma Pull Request à main com o resultado do seu teste.
-
-### Envio
-Não abra Pull Request, crie o seu próprio repositório público e envie o link para <kenedymorais.dev@gmail.com> com o título **Teste Frontend InCicle** e informe seu nome completo no corpo do e-mail
-
-### O que será avaliado
-  * Capacidade de layoutzação (mantenha-se fiel ao layout proposto);
-  * Responsividade;
-  * Organização de componentes;
-  * Arquitetura de CSS;
-
+Link do projeto online: <a href=' https://testincicle.vercel.app/'>Projeto</a>
 <sub>Os dados do teste são totalmente fictícios.</sub>
