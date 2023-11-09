@@ -55,10 +55,10 @@ function App() {
   return (
     <main className="w-full">
       <Navbar />
-      <section className="px-8 lg:px-16 mb-10 gap-5 w-full flex flex-col  md:flex-row mt-7 min-h-[760px] ">
+      <section className="px-8 mb-10 gap-5 flex flex-col lg:px-16  md:flex-row mt-7 ">
         <div className="w-12/12 md:w-9/12 ">
           <div className="w-full flex flex-col sm:flex-row justify-between mb-2">
-            <h2 className="text-2xl md:text-4xl  font-light">Endormarketing</h2>
+            <h2 className="text-2xl md:text-4xl font-light">Endormarketing</h2>
             <div className="flex gap-3 h-10 my-1">
               <button
                 className="flex p-4 bg-[#ffffff] justify-center gap-2 items-center rounded-lg w-[115px] h-[38px] border-stone-500 border-[1px]"
